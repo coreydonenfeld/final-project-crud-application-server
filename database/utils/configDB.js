@@ -10,7 +10,7 @@ const dbPwd = 'postgres';
 
 // Export the variables 
 module.exports = {
-  dbName,
-  dbUser,
-  dbPwd
+    dbName,
+    dbUser,
+    dbPwd
 };
