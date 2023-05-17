@@ -35,6 +35,11 @@ const { Student, Campus } = require('../database/models');
  */
 const asyncHandler = require('express-async-handler');
 
+/**
+ * Utility function to generate random avatar colors.
+ */
+const getRandomColors = require('../database/utils/colors');
+
 /* GET ALL STUDENTS: async/await using express-async-handler (asyncHandler) */
 // Automatically catches any error and sends to Routing Error-Handling Middleware (app.js)
 // It is the same as using "try-catch" and calling next(error)
@@ -56,6 +61,11 @@ router.get('/:id', asyncHandler(async (req, res) => {
 
 /* ADD NEW STUDENT */
 router.post('/', function (req, res, next) {
+    // Add random avatar colors
+    const [ background, text ] = getRandomColors();
+    req.body.avatarColors = [ background, text ];
+
+    // Add student to database
     Student.create(req.body)
         .then(createdStudent => res.status(200).json(createdStudent))
         .catch(err => next(err));

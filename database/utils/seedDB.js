@@ -4,6 +4,7 @@
 It seeds the database with several initial students and campuses.
 ==================================================*/
 const { Campus, Student } = require('../models');  // Import database models
+const getRandomColors = require('./colors');  // Import a function to generate random colors
 
 // Seed database
 const seedDB = async () => {
@@ -29,18 +30,24 @@ const seedDB = async () => {
         imageUrl: "https://www.brooklyn.cuny.edu/web/com_socialImages/BrooklynCollegeLibrary_1200x628.jpg",
     });
 
+    const [background1, text1] = getRandomColors();
+    const [background2, text2] = getRandomColors();
+
     // Create a new student for a campus
     const dummy_student = await Student.create({
         firstname: "Joe",
         lastname: "Smith",
         email: "joe.smith@example.com",
         gpa: 3.5,
+        avatarColors: [background1, text1],
     });
     // Create a new student for a campus
     const dummy_student2 = await Student.create({
         firstname: "Mary",
         lastname: "Johnson",
         email: "mary.johnson@school.edu",
+        gpa: 3.8,
+        avatarColors: [background2, text2],
     });
 
     // Add students to campuses
