@@ -3,14 +3,36 @@
 
 It defines all the students-related routes.
 ==================================================*/
-// Import Express module
+
+/**
+ * Express router providing students-related routes.
+ * @module routers/users
+ * @requires express
+ */
+
+/**
+ * Express module.
+ * @const
+ */
 const express = require('express');
-// Create an Express router function called "router"
+
+/**
+ * Express router to mount students related functions on.
+ * @type {object}
+ * @const
+ */
 const router = express.Router();
-// Import database models
+
+/**
+ * Database models.
+ * @const
+ */
 const { Student, Campus } = require('../database/models');
 
-// Import a middleware to replace "try and catch" for request handler, for a concise coding (fewer lines of code)
+/**
+ * Middleware to replace "try and catch" for request handler, for a concise coding (fewer lines of code).
+ * @const
+ */
 const asyncHandler = require('express-async-handler');
 
 /* GET ALL STUDENTS: async/await using express-async-handler (asyncHandler) */
@@ -22,7 +44,11 @@ router.get('/', asyncHandler(async (req, res) => {
 }));
 
 /* GET STUDENT BY ID */
+
+// if not found, it will return null
+
 router.get('/:id', asyncHandler(async (req, res) => {
+    console.log('Get student:', req.params.id);
     // Find student by Primary Key
     let student = await Student.findByPk(req.params.id, { include: [Campus] });  // Get the student and its associated campus
     res.status(200).json(student);  // Status code 200 OK - request succeeded
