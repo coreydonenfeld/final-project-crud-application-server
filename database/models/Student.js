@@ -32,7 +32,12 @@ const Student = db.define("student", {
             min: 0.0,
             max: 4.0
         },
-    }
+    },
+
+    avatarColors: {
+        type: Sequelize.ARRAY(Sequelize.STRING),
+        defaultValue: ["#000000", "#000000"],
+    },
 });
 
 // Export the student model
