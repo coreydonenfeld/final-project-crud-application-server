@@ -1,5 +1,5 @@
 # final-project-full-stack-crud-application
-CSCI 39548 Final Project - Full-Stack CRUD Application
+CSCI 39548 Final Project - Full-Stack CRUD Application Server
 
 ## Group
 Corey Donenfeld ([coreydonenfeld](https://github.com/coreydonenfeld))
